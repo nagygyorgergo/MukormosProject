@@ -1,0 +1,25 @@
+.navbar-brand{
+    color: blueviolet;
+}
+
+.main_component{
+    height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+a:hover, a:active{
+    color: lightslategray;
+}
+
+.navigation-items{
+    list-style: none;
+
+}
+
+mat-sidenav{
+    width: 250px;
+}

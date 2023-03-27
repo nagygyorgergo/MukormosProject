@@ -1,0 +1,53 @@
+<!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Fikusz Kukisz</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/create" routerLinkActive="active">Add student</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-5">
+  <router-outlet></router-outlet>
+</div>
+-->
+
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav>
+    <app-menu (selectedPage)="changePage($event)" [currentPage]="page" *ngIf="page" (onCloseSidenav)="onClose($event,sidenav)"></app-menu>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <div fxHide.gt-xs>
+        <button mat-icon-button (click)="onToggleSidenav(sidenav)">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+      <div> <a class="nav-link" href="#">Műkörmös App</a></div>
+      <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+        <ul fxLayout fxLayoutGap="10px" class="navigation-items">
+          <li *ngIf="!(afAuth.user |async)"><a class="nav-link" routerLink="/login" >Login</a></li>
+          <li *ngIf="!(afAuth.user |async)"><a class="nav-link" routerLink="/signup" >Signup</a></li>
+          <li><a class="nav-link" routerLink="/dashboard" >My reservations</a></li>
+          <li><a class="nav-link" routerLink="/list-reservations" routerLinkActive="active">List all</a></li>
+          <li><a class="nav-link" routerLink="/create" >Add</a></li>
+          <li *ngIf="(afAuth.user |async)"><a class="nav-link" role="button" (click)="logout()" >Log out</a></li>
+        </ul>
+      </div>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+      <!--<div *ngIf="(afAuth.user | async)">  
+      User is logged in
+      <br>
+      </div>
+      <div *ngIf="!(afAuth.user |async)">
+          User isnt logged in
+      </div>-->
+  </mat-sidenav-content>
+</mat-sidenav-container>

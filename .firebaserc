@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "kotprog01": {
+      "hosting": {
+        "CrudAppUjra": [
+          "kotprog01"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "kotprog01"
+  }
+}
