@@ -12,7 +12,7 @@ import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/list-reservations', pathMatch: 'full'},
-  { path: 'create', component: CreateRecordComponent},
+  { path: 'create', component: CreateRecordComponent, canActivate: [AuthGuard]},
   { path: 'list-reservations', component: ListRecordComponent},
   { path: 'update-reservation/:id', component: EditRecordComponent},
   { path: 'signup', component: SignupComponent},

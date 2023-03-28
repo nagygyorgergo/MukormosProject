@@ -19,7 +19,8 @@ export class ReservationService {
 
   getResList(){
     return this.angularFirestore
-    .collection('reservations-collection')
+    .collection('reservations-collection', ref => ref
+    .orderBy('date', 'desc'))
     .snapshotChanges();
   }
 
@@ -55,7 +56,7 @@ export class ReservationService {
       .doc(id)
       .update({
         worker_name: reservation.worker_name,
-        email: reservation.email,
+        
         service: reservation.service,
         timestamp: reservation.timestamp,
         date: reservation.date

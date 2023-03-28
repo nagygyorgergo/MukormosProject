@@ -17,6 +17,7 @@ export class DashboardComponent implements OnInit{
   selectedValue: string |any;
 
   userUid: string |any;
+  currentDate = new Date().getTime();
 
   constructor(
     private reservationService: ReservationService,

@@ -12,15 +12,17 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 export class ListRecordComponent implements OnInit{
   reservation: any;
   userUid: string |any;
+  userEmail: string |any;
 
   constructor(public afAuth: AngularFireAuth,
     private reservationService: ReservationService){
     this.afAuth.authState.subscribe(user => {
       if (user) {
         this.userUid = user.uid;
+        this.userEmail = user.email;
       } else {
         this.userUid = null;
-      }
+      } 
     });
   }
 
@@ -33,6 +35,7 @@ export class ListRecordComponent implements OnInit{
         } as Reservation
       })
     });
+
   }
 
   removeStudent(reservation: Reservation): void{

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { take } from 'rxjs';
 import { Reservation } from '../model/reservation.model';
 import { ReservationService } from '../services/reservation.service';
 
@@ -16,6 +17,8 @@ export class EditRecordComponent implements OnInit{
 
   newDate: any;
   newTimestamp: any;
+
+  submitDisabled = false;
 
   constructor(
     public reservationService: ReservationService,
@@ -38,7 +41,6 @@ export class EditRecordComponent implements OnInit{
         this.reservationRef = res;
         this.editForm = this.formBuilder.group({
           worker_name: [this.reservationRef.worker_name],
-          email: [this.reservationRef.email],
           date: [this.reservationRef.date],
           timestamp: [this.reservationRef.timestamp],
           service: [this.reservationRef.service]
@@ -48,17 +50,20 @@ export class EditRecordComponent implements OnInit{
 
   onSubmit(date: number, timestamp: string){
     const id = this.act.snapshot.paramMap.get('id');
+    
+    this.submitDisabled = true; // Disable the button
+    //var date = this.resForm.get('date')!.value;
+    //var timestamp = this.resForm.get('timestamp')!.value;
 
-    this.reservationService.isReserved(date, timestamp).subscribe((reserved) => {
+    this.reservationService.isReserved(date, timestamp).pipe(take(1)).subscribe((reserved) => {
       if (reserved) {
-        console.log("true, tartalmazza mar");
-        confirm("This is already reserved.");
-
+        console.log('true, tartalmazza mar');
+        confirm('This is already reserved.');
+        this.submitDisabled = false; // Re-enable the button
       } else {
-        console.log("false, nem tartalmazzas");
+        console.log('false, nem tartalmazza');
         this.reservationService.updateRes(this.editForm.value, id);
         this.router.navigate(['list-reservations']);
-        
       }
     });
   }

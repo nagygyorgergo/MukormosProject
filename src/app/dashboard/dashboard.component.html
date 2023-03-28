@@ -1,13 +1,4 @@
-<div *ngIf="(afAuth.user | async)">  
-    User is logged in
-    <p>{{userUid}}</p>
-</div>
-<div *ngIf="!(afAuth.user |async)">
-    User isnt logged in
-</div>
-
 <div class="container-fluid">
-     
     <mat-form-field>
         <mat-label>Service:</mat-label>
         <mat-select [(ngModel)]="selectedValue">
@@ -18,35 +9,43 @@
             <mat-option value="Orosz manikűr">Orosz manikűr</mat-option>
         </mat-select>
     </mat-form-field>
-    <button mat-raised-button (click)="listRes(selectedValue)">Click me</button>
+    <button mat-raised-button (click)="listRes(selectedValue)">List by category, <br> date desceding</button>
 
-    <table class="table">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Worker name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Timestamp</th>
-            <th scope="col">Service</th>
-            <th scope="col">user_id</th>
-            <th scope="col">Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        <ng-container *ngFor="let res of reservation; let i = index">
-            <tr *ngIf="res.user_id == userUid">
-              <th scope="row">{{i + 1}}</th>
-              <td>{{res.worker_name}}</td>
-              <td>{{res.email}}</td>
-              <td>{{res.date |dateFormat}} {{res.timestamp}}</td>
-              <td>{{res.service}}</td>
-              <td>{{res.user_id}}</td>
-              <td>
-                <span (click)="removeRes(res)" class="btn btn-danger">Delete</span> &nbsp;
-                <span routerLink="/update-reservation/{{res.id}}" class="btn btn-primary">Edit</span>
-              </td> 
-            </tr>
-          </ng-container>
-    </tbody>
-</table>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Patient's name</th>
+                    <!-- <th scope="col">Email</th> -->
+                    <th scope="col">Timestamp</th>
+                    <th scope="col">Service</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container *ngFor="let res of reservation; let i = index">
+                    <tr *ngIf="res.user_id == userUid">
+                      <th scope="row">{{i + 1}}</th>
+                      <td>{{res.worker_name}}</td>
+                      <!-- <td>{{res.email}}</td> -->
+                      <td *ngIf="currentDate > res.date.toDate().getTime()" appExpired>{{res.date |dateFormat}} {{res.timestamp}}</td>
+                      <td *ngIf="currentDate <= res.date.toDate().getTime()">{{res.date |dateFormat}} {{res.timestamp}}</td>
+                      
+                      
+                      <td>{{currentDate}}</td>
+                      <td>{{res.date.toDate().getTime()}}</td>
+
+
+                      <td>{{res.service}}</td>
+                      <td>
+                        <span (click)="removeRes(res)" class="btn btn-danger">Delete</span> &nbsp;
+                        <span routerLink="/update-reservation/{{res.id}}" class="btn btn-primary">Edit</span>
+                      </td> 
+                    </tr>
+                  </ng-container>
+            </tbody>
+        </table>
+    </div>
+    
 </div>

@@ -1,4 +1,16 @@
-# CrudAppUjra
+# MukormosProject
+
+## README az értékelőknek:
+### Pipe osztály:
+-a dátum megjelentésekor használom a list-record és dashboard componensekben.
+
+### Firestore lekérdezés:
+-a dashboard listázásnál, illetve az időpont foglalás/módosítás során annak ellenőrzése, hogy az adott időpont szabad-e még (reservation.service.ts).
+
+### Attributum direktívák:
+-highlight.directive az összes record listában kiemeli a bejelentkezett felhasználóéit.
+-expired.directive: dashboard oldalon (My reservations) listázáskor a lejárt időpontok háttere pirosas lesz.
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.5.
 

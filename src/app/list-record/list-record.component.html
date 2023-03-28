@@ -1,34 +1,31 @@
-<div *ngIf="(afAuth.user | async)">  
-    User is logged in
-    <p>{{userUid}}</p>
-</div>
-<div *ngIf="!(afAuth.user |async)">
-    User isnt logged in
-</div>
 <div class="container-fluid">
-    <table class="table">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Worker name</th>
-            <th scope="col">Contact Email</th>
-            <th scope="col">Timestamp</th>
-            <th scope="col">Service</th>
-            <th scope="col">Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let res of reservation; let i= index">
-            <th scope="row">{{i + 1}}</th>
-            <td>{{res.worker_name}}</td>
-            <td>{{res.email}}</td>
-            <td>{{res.date | dateFormat}} {{res.timestamp}}</td>
-            <td>{{res.service}}</td>
-            <td>
-                <span (click)="removeStudent(res)" class="btn btn-danger">Delete</span> &nbsp;
-                <span routerLink="/update-reservation/{{res.id}}" class="btn btn-primary">Edit</span>
-            </td>
-        </tr>
-    </tbody>
-</table>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Patient's name</th>
+                    <th scope="col">Contact Email</th>
+                    <th scope="col">Timestamp</th>
+                    <th scope="col">Service</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let res of reservation; let i= index">
+                    <th scope="row">{{i + 1}}</th>
+                    <td>{{res.worker_name}}</td>
+                    <td *ngIf="userEmail == res.email" appHighlight>{{res.email}}</td>
+                    <td *ngIf="userEmail != res.email">{{res.email}}</td>
+                    <td >{{res.date | dateFormat}} {{res.timestamp}}</td>
+                    <td>{{res.service}}</td>
+                    <td>
+                        <span (click)="removeStudent(res)" class="btn btn-danger">Delete</span> &nbsp;
+                        <span routerLink="/update-reservation/{{res.id}}" class="btn btn-primary">Edit</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
 </div>

@@ -14,7 +14,17 @@ export class AppComponent implements OnInit{
   page = '';
   routes: Array<string> =[];
 
-  constructor(private router: Router, public afAuth: AngularFireAuth){}
+  userEmail: any;
+
+  constructor(private router: Router, public afAuth: AngularFireAuth){
+    this.afAuth.authState.subscribe(user => {
+      if (user) {
+        this.userEmail = user.email;
+      } else {
+        this.userEmail = null;
+      } 
+    });
+  }
 
   ngOnInit(){
     this.routes = this.router.config.map(conf => conf.path) as string[];

@@ -37,6 +37,8 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DateFormatPipe } from './pipes/date-format.pipe';
+import { HighlightDirective } from './directives/highlight.directive';
+import { ExpiredDirective } from './directives/expired.directive';
 
 
 
@@ -51,7 +53,9 @@ import { DateFormatPipe } from './pipes/date-format.pipe';
     SignupComponent,
     LoginComponent,
     DashboardComponent,
-    DateFormatPipe
+    DateFormatPipe,
+    HighlightDirective,
+    ExpiredDirective
   ],
   imports: [
     BrowserModule,

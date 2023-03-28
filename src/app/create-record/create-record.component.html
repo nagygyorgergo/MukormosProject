@@ -1,15 +1,15 @@
 <form [formGroup]="resForm" (ngSubmit)="onSubmit(newDate, newTimestamp)" novalidate>
-    <h1>Add new stuent {{userUid}}</h1>
+    <h1>Add new reservation <br>{{userEmail}}</h1>
 
     <mat-form-field>
-        <mat-label for="worker_name">Worker name:</mat-label>
+        <mat-label for="worker_name">Patient's name:</mat-label>
         <input matInput type="text" formControlName="worker_name" required/>
     </mat-form-field>
 
-    <mat-form-field>
+    <!-- <mat-form-field>
         <mat-label for="email">Contact Email:</mat-label>
         <input matInput type="email" formControlName="email" required/>
-    </mat-form-field>
+    </mat-form-field> -->
 
     
     <!-- <mat-label>Timestamp:</mat-label> -->
