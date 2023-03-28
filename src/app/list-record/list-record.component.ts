@@ -42,7 +42,7 @@ export class ListRecordComponent implements OnInit{
   }
 
   getStudent(){
-    return this.reservationService.getResList;
+    return this.reservationService.getResList();
   }
 
 }

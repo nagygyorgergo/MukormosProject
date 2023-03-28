@@ -14,6 +14,9 @@ export class EditRecordComponent implements OnInit{
   reservationRef: any;
   minDate = new Date();
 
+  newDate: any;
+  newTimestamp: any;
+
   constructor(
     public reservationService: ReservationService,
     public formBuilder: FormBuilder,
@@ -36,17 +39,28 @@ export class EditRecordComponent implements OnInit{
         this.editForm = this.formBuilder.group({
           worker_name: [this.reservationRef.worker_name],
           email: [this.reservationRef.email],
+          date: [this.reservationRef.date],
           timestamp: [this.reservationRef.timestamp],
           service: [this.reservationRef.service]
         })
       })
   }
 
-  onSubmit(){
+  onSubmit(date: number, timestamp: string){
     const id = this.act.snapshot.paramMap.get('id');
 
-    this.reservationService.updateRes(this.editForm.value, id);
-    this.router.navigate(['list-reservations']);
+    this.reservationService.isReserved(date, timestamp).subscribe((reserved) => {
+      if (reserved) {
+        console.log("true, tartalmazza mar");
+        confirm("This is already reserved.");
+
+      } else {
+        console.log("false, nem tartalmazzas");
+        this.reservationService.updateRes(this.editForm.value, id);
+        this.router.navigate(['list-reservations']);
+        
+      }
+    });
   }
 
 }

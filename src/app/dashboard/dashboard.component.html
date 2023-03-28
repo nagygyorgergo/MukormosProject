@@ -7,15 +7,15 @@
 </div>
 
 <div class="container-fluid">
-    
+     
     <mat-form-field>
-        <mat-label>Student course:</mat-label>
+        <mat-label>Service:</mat-label>
         <mat-select [(ngModel)]="selectedValue">
-            <mat-option value="Manikűr">Manikűr</mat-option>
-            <mat-option value="Pedikűr">Pedikűr</mat-option>
-            <mat-option value="Nagy műköröm">Nagy műköröm</mat-option>
-            <mat-option value="Kis műköröm">Kis műköröm</mat-option>
-            <mat-option value="Közepes műköröm">Közepes műköröm</mat-option>
+            <mat-option value="Erősített géllakk">Erősített géllakk</mat-option>
+            <mat-option value="Műköröm ‘S’ méret">Műköröm ‘S’ méret</mat-option>
+            <mat-option value="Műköröm ‘M’ méret">Műköröm ‘M’ méret</mat-option>
+            <mat-option value="Műköröm ‘L’ méret">Műköröm ‘L’ méret</mat-option>
+            <mat-option value="Orosz manikűr">Orosz manikűr</mat-option>
         </mat-select>
     </mat-form-field>
     <button mat-raised-button (click)="listRes(selectedValue)">Click me</button>

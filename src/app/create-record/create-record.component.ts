@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DateFormatPipe } from '../pipes/date-format.pipe';
 import { ReservationService } from '../services/reservation.service';
 
 @Component({
@@ -16,6 +15,9 @@ export class CreateRecordComponent implements OnInit{
   userUid: string |any;
 
   minDate = new Date();
+
+  newDate: number | any;
+  newTimestamp: string | any;
 
   constructor(
     public reservationService: ReservationService,
@@ -44,9 +46,22 @@ export class CreateRecordComponent implements OnInit{
     });
   }
 
-  onSubmit(){
-    this.reservationService.createRes(this.resForm.value);
-    this.router.navigate(['list-reservations']);
+  onSubmit(date: number, timestamp: string){
+    console.log(date);
+    console.log(timestamp);
+
+    this.reservationService.isReserved(date, timestamp).subscribe((reserved) => {
+      if (reserved) {
+        console.log("true, tartalmazza mar");
+        confirm("This is already reserved.");
+
+      } else {
+        console.log("false, nem tartalmazzas");
+        this.reservationService.createRes(this.resForm.value);
+        this.router.navigate(['list-reservations']);
+        
+      }
+    });
   }
 
 }

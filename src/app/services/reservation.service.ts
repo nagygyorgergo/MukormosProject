@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { map, Observable } from 'rxjs';
 import { Reservation } from '../model/reservation.model';
 
 @Injectable({
@@ -20,6 +21,16 @@ export class ReservationService {
     return this.angularFirestore
     .collection('reservations-collection')
     .snapshotChanges();
+  }
+
+  isReserved(date: number, timestamp: string): Observable<boolean> {
+    return this.angularFirestore
+      .collection('reservations-collection', ref => 
+        ref.where('date', '==', date).where('timestamp', '==', timestamp))
+      .valueChanges()
+      .pipe(
+        map(reservations => reservations.length > 0)
+      );
   }
 
   createRes(reservation: Reservation){
@@ -46,7 +57,8 @@ export class ReservationService {
         worker_name: reservation.worker_name,
         email: reservation.email,
         service: reservation.service,
-        timestamp: reservation.timestamp
+        timestamp: reservation.timestamp,
+        date: reservation.date
       });
   }
 
