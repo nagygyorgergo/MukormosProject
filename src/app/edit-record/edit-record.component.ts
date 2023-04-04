@@ -40,18 +40,24 @@ export class EditRecordComponent implements OnInit{
       this.reservationService.getResDoc(id).subscribe((res: any) =>{
         this.reservationRef = res;
         this.editForm = this.formBuilder.group({
-          worker_name: [this.reservationRef.worker_name],
-          date: [this.reservationRef.date],
-          timestamp: [this.reservationRef.timestamp],
-          service: [this.reservationRef.service]
+          worker_name: [res.worker_name],
+          date: [res.date],
+          timestamp: [res.timestamp],
+          service: [res.service]
         })
       })
   }
-
+ 
   onSubmit(date: number, timestamp: string){
     const id = this.act.snapshot.paramMap.get('id');
+
+    if (!date || !timestamp) {
+      console.log('Invalid date or timestamp');
+      confirm('This is already reserved, choose another timestamp and date.');
+      return;
+    }
     
-    this.submitDisabled = true; // Disable the button
+    //this.submitDisabled = true; // Disable the button
     //var date = this.resForm.get('date')!.value;
     //var timestamp = this.resForm.get('timestamp')!.value;
 
@@ -59,7 +65,7 @@ export class EditRecordComponent implements OnInit{
       if (reserved) {
         console.log('true, tartalmazza mar');
         confirm('This is already reserved.');
-        this.submitDisabled = false; // Re-enable the button
+        //this.submitDisabled = false; // Re-enable the button
       } else {
         console.log('false, nem tartalmazza');
         this.reservationService.updateRes(this.editForm.value, id);

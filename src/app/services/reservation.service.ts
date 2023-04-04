@@ -56,7 +56,7 @@ export class ReservationService {
       .doc(id)
       .update({
         worker_name: reservation.worker_name,
-        
+         
         service: reservation.service,
         timestamp: reservation.timestamp,
         date: reservation.date
