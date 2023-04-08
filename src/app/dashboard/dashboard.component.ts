@@ -23,6 +23,7 @@ export class DashboardComponent implements OnInit{
     private reservationService: ReservationService,
     public afAuth: AngularFireAuth,
     private userService: UserService){
+      this.selectedValue = "Orosz manikűr";
       this.afAuth.authState.subscribe(user => {
         if (user) {
           this.userUid = user.uid;

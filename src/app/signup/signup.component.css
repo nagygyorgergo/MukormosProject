@@ -1,6 +1,12 @@
-mat-card, form {
+
+
+mat-card{
+    width: 30%;
     padding-top: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background: hsl(301, 100%, 37%);
+    margin: 0 auto; /* Centers the card horizontally */
+    margin-top: 50px; /* Adds some space from the top */
 }

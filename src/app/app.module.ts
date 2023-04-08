@@ -39,6 +39,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { DateFormatPipe } from './pipes/date-format.pipe';
 import { HighlightDirective } from './directives/highlight.directive';
 import { ExpiredDirective } from './directives/expired.directive';
+import { ProfileComponent } from './profile/profile.component';
+
 
 
 
@@ -55,7 +57,9 @@ import { ExpiredDirective } from './directives/expired.directive';
     DashboardComponent,
     DateFormatPipe,
     HighlightDirective,
-    ExpiredDirective
+    ExpiredDirective,
+    ProfileComponent,
+    
   ],
   imports: [
     BrowserModule,

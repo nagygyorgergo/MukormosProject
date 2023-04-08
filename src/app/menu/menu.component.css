@@ -13,3 +13,6 @@ a:hover, a:active{
     
 }
 
+mat-nav-list{
+    height: 100%;
+}

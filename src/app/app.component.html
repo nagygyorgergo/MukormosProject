@@ -15,6 +15,7 @@
         <ul fxLayout fxLayoutGap="10px" class="navigation-items">
           <li *ngIf="!(afAuth.user |async)"><a class="nav-link" routerLink="/login" >Login</a></li>
           <li *ngIf="!(afAuth.user |async)"><a class="nav-link" routerLink="/signup" >Signup</a></li>
+          <li *ngIf="(afAuth.user |async)"><a class="nav-link" routerLink="/profile" >Profile</a></li>
           <li><a class="nav-link" routerLink="/dashboard" >My reservations</a></li>
           <li><a class="nav-link" routerLink="/list-reservations" routerLinkActive="active">List all</a></li>
           <li><a class="nav-link" routerLink="/create" >Add</a></li>
@@ -22,20 +23,16 @@
         </ul>
       </div>
     </mat-toolbar>
-    <div *ngIf="(afAuth.user | async)">  
+    <!--<div *ngIf="(afAuth.user | async)">  
       User is logged in
       <p>{{userEmail}}</p>
     </div>
     <div *ngIf="!(afAuth.user |async)">
         User isnt logged in
-    </div>
+    </div>-->
+
     <router-outlet></router-outlet>
-      <!--<div *ngIf="(afAuth.user | async)">  
-      User is logged in
-      <br>
-      </div>
-      <div *ngIf="!(afAuth.user |async)">
-          User isnt logged in
-      </div>-->
+    
   </mat-sidenav-content>
-</mat-sidenav-container>
+</mat-sidenav-container>  
+

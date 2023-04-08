@@ -2,19 +2,24 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-  }
+    background-color: pink;
+    
+}
 
 .navbar-brand{
     color: blueviolet;
+    
 }
+
 
 .main_component{
     height: 100vh;
+    background-color: #FF69B4;
 }
 
 a {
     text-decoration: none;
-    color: white;
+    color: rgb(255, 255, 255);
 }
 
 a:hover, a:active{
@@ -29,3 +34,9 @@ a:hover, a:active{
 mat-sidenav{
     width: 250px;
 }
+
+mat-sidenav-content {
+     background: #FF689F;
+     height: 100%;
+  }
+  

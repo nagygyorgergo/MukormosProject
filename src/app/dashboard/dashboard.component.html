@@ -1,16 +1,16 @@
 <div class="container-fluid">
     <mat-form-field>
         <mat-label>Service:</mat-label>
-        <mat-select [(ngModel)]="selectedValue">
+        <mat-select  [(ngModel)]="selectedValue" placeholder="Erősített géllakk">
             <mat-option value="Erősített géllakk">Erősített géllakk</mat-option>
             <mat-option value="Műköröm ‘S’ méret">Műköröm ‘S’ méret</mat-option>
             <mat-option value="Műköröm ‘M’ méret">Műköröm ‘M’ méret</mat-option>
             <mat-option value="Műköröm ‘L’ méret">Műköröm ‘L’ méret</mat-option>
             <mat-option value="Orosz manikűr">Orosz manikűr</mat-option>
         </mat-select>
-    </mat-form-field>
-    <button mat-raised-button (click)="listRes(selectedValue)">List by category, <br> date desceding</button>
-
+    </mat-form-field><br>
+    <button mat-raised-button (click)="listRes(selectedValue)">List by category, <br> date desceding</button><br>
+    <span>Red background: expired dates</span>
     <div class="table-responsive">
         <table class="table">
             <thead>
@@ -32,10 +32,10 @@
                       <td *ngIf="currentDate > res.date.toDate().getTime()" appExpired>{{res.date |dateFormat}} {{res.timestamp}}</td>
                       <td *ngIf="currentDate <= res.date.toDate().getTime()">{{res.date |dateFormat}} {{res.timestamp}}</td>
                       
-                      
+                      <!--
                       <td>{{currentDate}}</td>
                       <td>{{res.date.toDate().getTime()}}</td>
-
+                        -->
 
                       <td>{{res.service}}</td>
                       <td>

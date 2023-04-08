@@ -1,4 +1,5 @@
 <div class="container-fluid">
+    <span>Green background: reserved by you</span>
     <div class="table-responsive">
         <table class="table">
             <thead>
@@ -8,7 +9,7 @@
                     <th scope="col">Contact Email</th>
                     <th scope="col">Timestamp</th>
                     <th scope="col">Service</th>
-                    <th scope="col">Action</th>
+                    <!--<th scope="col">Action</th>-->
                 </tr>
             </thead>
             <tbody>
@@ -19,10 +20,10 @@
                     <td *ngIf="userEmail != res.email">{{res.email}}</td>
                     <td >{{res.date | dateFormat}} {{res.timestamp}}</td>
                     <td>{{res.service}}</td>
-                    <td>
+                    <!--<td>
                         <span (click)="removeStudent(res)" class="btn btn-danger">Delete</span> &nbsp;
                         <span routerLink="/update-reservation/{{res.id}}" class="btn btn-primary">Edit</span>
-                    </td>
+                    </td>-->
                 </tr>
             </tbody>
         </table>

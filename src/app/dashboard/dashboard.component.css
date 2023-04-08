@@ -2,3 +2,18 @@
     word-wrap: break-word;
     
 }
+
+.container-fluid{
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+mat-form-field{
+    padding-top: 20px;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+button{
+margin-bottom: 20px;
+}

@@ -29,9 +29,23 @@ export class UserService {
 
   }
 
+  /* 
   getById(id: string){
     return this.angularFirestore.collection<User>('users-collection').doc(id).valueChanges();
   }
+ */
+
+  getUsernameById(uid: string): Observable<string> {
+    return this.angularFirestore
+      .collection<User>('users-collection', ref => ref.where('id', '==', uid))
+      .valueChanges({ idField: 'id' })
+      .pipe(
+        map(users => users[0].username)
+      );
+  }
+  
+  
+  
 
   update(){
 

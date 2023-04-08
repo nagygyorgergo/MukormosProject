@@ -43,24 +43,25 @@ export class CreateRecordComponent implements OnInit{
   ngOnInit(): void {
     this.afAuth.authState.subscribe(user => {
       if (user) {
-        this.userUid = user.uid;
         this.userEmail = user.email;
+        this.userUid = user.uid;
         this.resForm.controls['user_id'].setValue(this.userUid);
         this.resForm.controls['email'].setValue(this.userEmail);
         console.log("User Uid:", user.uid);
-        
+
+        this.userService.getUsernameById(this.userUid).subscribe(username => {
+          this.userName = username;
+          this.resForm.controls['worker_name'].setValue(this.userName);
+        });
       } else {
-        this.userUid = null;
-      }
-    
+        this.userEmail = null;
+      } 
     });
   }
 
   onSubmit(date: number, timestamp: string) {
     this.submitDisabled = true; // Disable the button
-    //var date = this.resForm.get('date')!.value;
-    //var timestamp = this.resForm.get('timestamp')!.value;
-
+  
     this.reservationService.isReserved(date, timestamp).pipe(take(1)).subscribe((reserved) => {
       if (reserved) {
         console.log('true, tartalmazza mar');

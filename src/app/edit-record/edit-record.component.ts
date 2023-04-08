@@ -69,9 +69,9 @@ export class EditRecordComponent implements OnInit{
       } else {
         console.log('false, nem tartalmazza');
         this.reservationService.updateRes(this.editForm.value, id);
-        this.router.navigate(['list-reservations']);
+        this.router.navigate(['dashboard']);
       }
     });
-  }
+  } 
 
 }

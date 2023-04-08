@@ -8,3 +8,8 @@ mat-card{
     margin: 0 auto; /* Centers the card horizontally */
     margin-top: 50px; /* Adds some space from the top */
 }
+
+h1, h2 {
+    text-align: center; /* Centers the text inside the card */
+    color: white; /* Changes the text color to white */
+}

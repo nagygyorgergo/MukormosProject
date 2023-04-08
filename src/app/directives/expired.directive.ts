@@ -6,7 +6,7 @@ import { Directive, ElementRef } from '@angular/core';
 export class ExpiredDirective {
 
   constructor(private el: ElementRef) {
-    this.el.nativeElement.style.backgroundColor = '#FFCCCB';
+    this.el.nativeElement.style.backgroundColor = '#ff4545';
  }
 
 }
