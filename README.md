@@ -11,6 +11,15 @@
 -highlight.directive az összes record listában kiemeli a bejelentkezett felhasználóéit.
 -expired.directive: dashboard oldalon (My reservations) listázáskor a lejárt időpontok háttere pirosas lesz.
 
+### Strukturális direktívák:
+Például a list-record.component.htm-ben ngIf és ngFor.
+
+### Material elemek:
+Az app.module.ts-ben láthatók a használt materialok importjai.
+
+###
+A My reservations, Profile és Add menupontok nem hasznalhatok a guest usereknek.
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.5.
 
