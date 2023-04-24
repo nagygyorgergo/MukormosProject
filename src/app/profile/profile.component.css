@@ -1,5 +1,5 @@
 mat-card{
-    width: 30%;
+    width: 75%;
     padding-top: 50px;
     display: flex;
     flex-direction: column;
@@ -9,7 +9,13 @@ mat-card{
     margin-top: 50px; /* Adds some space from the top */
 }
 
+mat-card-content mat-card-title{
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
 h1, h2 {
-    text-align: center; /* Centers the text inside the card */
+    text-align: center; /* Centers the text inside the card */ 
     color: white; /* Changes the text color to white */
 }

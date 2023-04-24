@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "target": "CrudAppUjra",
+    "target": "MukormosApp",
     "public": "dist/crud-app-ujra",
     "ignore": [
       "**/.*"

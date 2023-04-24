@@ -2,7 +2,7 @@
   "targets": {
     "mukormosproject": {
       "hosting": {
-        "CrudAppUjra": [
+        "MukormosApp": [
           "mukormosproject"
         ]
       }

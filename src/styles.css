@@ -4,5 +4,15 @@ html, body { height: 100%;
     /*background-color: linear-gradient(45deg, #FF69B4, #C71585, #800080, #4B0082);*/
     
     background: #FF689F;
+    z-index: 99999;
       
 }
+
+body{
+    margin: 0 auto;
+}
+
+.root{
+    height: 100%;
+}
+
