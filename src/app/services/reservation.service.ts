@@ -20,7 +20,7 @@ export class ReservationService {
   getResList(){
     return this.angularFirestore
     .collection('reservations-collection', ref => ref
-    .orderBy('date', 'desc'))
+    .orderBy('date', 'desc')) 
     .snapshotChanges();
   }
 

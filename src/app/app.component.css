@@ -11,6 +11,9 @@ html, body {
     
 }
 
+.toolbar{
+    background: linear-gradient(to bottom right, #d18cc6, #e958a8, #8B5FBF, #6E43A3, #533D8F, #751c7b, #d33a89);
+}
 
 .main_component{
     height: 100vh;

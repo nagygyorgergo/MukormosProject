@@ -1,14 +1,14 @@
 {
   "targets": {
-    "kotprog01": {
+    "mukormosproject": {
       "hosting": {
         "CrudAppUjra": [
-          "kotprog01"
+          "mukormosproject"
         ]
       }
     }
   },
   "projects": {
-    "default": "kotprog01"
+    "default": "mukormosproject"
   }
-}
+} 
