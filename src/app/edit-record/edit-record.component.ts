@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { take } from 'rxjs';
-import { Reservation } from '../model/reservation.model';
 import { ReservationService } from '../services/reservation.service';
 
 @Component({
@@ -28,7 +27,7 @@ export class EditRecordComponent implements OnInit{
       this.editForm = this.formBuilder.group({
         worker_name: [''],
         email: [''],
-        date: 0,
+        date: [''],
         timestamp: [''],
         service: [''],
       })
@@ -36,11 +35,13 @@ export class EditRecordComponent implements OnInit{
 
   ngOnInit(): void {
     const id = this.act.snapshot.paramMap.get('id');
-
       this.reservationService.getResDoc(id).subscribe((res: any) =>{
         this.reservationRef = res;
+        if(res!==null){
+          this.newTimestamp = res.timestamp;
+        }
+      
         this.editForm = this.formBuilder.group({
-          worker_name: [res.worker_name],
           date: [res.date],
           timestamp: [res.timestamp],
           service: [res.service]
@@ -50,16 +51,13 @@ export class EditRecordComponent implements OnInit{
  
   onSubmit(date: number, timestamp: string){
     const id = this.act.snapshot.paramMap.get('id');
+    console.log("timestamp "+ timestamp);
 
     if (!date || !timestamp) {
-      console.log('Invalid date or timestamp');
-      confirm('This is already reserved, choose another timestamp and date.');
+     console.log('Invalid date or timestamp');
+     confirm('No valid data give.');
       return;
     }
-    
-    //this.submitDisabled = true; // Disable the button
-    //var date = this.resForm.get('date')!.value;
-    //var timestamp = this.resForm.get('timestamp')!.value;
 
     this.reservationService.isReserved(date, timestamp).pipe(take(1)).subscribe((reserved) => {
       if (reserved) {
@@ -72,6 +70,27 @@ export class EditRecordComponent implements OnInit{
         this.router.navigate(['dashboard']);
       }
     });
+    
+  
+    /* let isReserved1: boolean;
+    this.reservationService.isDateReserved(date).pipe(take(1)).subscribe((reserved) => {
+      if (reserved) {
+        isReserved1 = true;
+      } else {
+        isReserved1 = false;
+      }
+    });
+    this.reservationService.isTimestampReserved(timestamp).pipe(take(1)).subscribe((reserved) => {
+      if (reserved && (isReserved1 === true)) {
+        console.log('true, tartalmazza mar');
+        confirm('This is already reserved.');
+      } else {
+        console.log('false, nem tartalmazza');
+        this.reservationService.updateRes(this.editForm.value, id);
+        this.router.navigate(['dashboard']);
+      }
+    }); */
+
   } 
 
 }

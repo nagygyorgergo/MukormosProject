@@ -1,7 +1,7 @@
 <mat-sidenav-container>
   <mat-sidenav #sidenav>
     <app-menu (selectedPage)="changePage($event)" [currentPage]="page" *ngIf="page" (onCloseSidenav)="onClose($event,sidenav)"></app-menu>
-  </mat-sidenav>
+</mat-sidenav>
 
   <mat-sidenav-content>
     <mat-toolbar class="toolbar">

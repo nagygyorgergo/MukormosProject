@@ -16,13 +16,9 @@ export class CreateRecordComponent implements OnInit{
   userUid: string |any;
   userEmail: string | any;
   userName: string| any;
-
   minDate = new Date();
-
   newDate: number | any;
   newTimestamp: string | any;
-
-  submitDisabled = false;
 
   constructor(
     public reservationService: ReservationService,
@@ -47,7 +43,7 @@ export class CreateRecordComponent implements OnInit{
         this.userUid = user.uid;
         this.resForm.controls['user_id'].setValue(this.userUid);
         this.resForm.controls['email'].setValue(this.userEmail);
-        console.log("User Uid:", user.uid);
+        //console.log("User Uid:", user.uid);
 
         this.userService.getUsernameById(this.userUid).subscribe(username => {
           this.userName = username;
@@ -60,38 +56,41 @@ export class CreateRecordComponent implements OnInit{
   }
 
   onSubmit(date: number, timestamp: string) {
-    this.submitDisabled = true; // Disable the button
-  
+   
     this.reservationService.isReserved(date, timestamp).pipe(take(1)).subscribe((reserved) => {
       if (reserved) {
         console.log('true, tartalmazza mar');
         confirm('This is already reserved.');
-        this.submitDisabled = false; // Re-enable the button
       } else {
         console.log('false, nem tartalmazza');
         this.reservationService.createRes(this.resForm.value);
         this.router.navigate(['list-reservations']);
       }
     });
-  }
-}
 
-  /* onSubmit(date: number, timestamp: string){
-    console.log(date);
-    console.log(timestamp);
-    
-    this.reservationService.isReserved(date, timestamp).subscribe((reserved) => {
+    /* let isReserved1: boolean;
+    this.reservationService.isDateReserved(date).pipe(take(1)).subscribe((reserved) => {
       if (reserved) {
-        console.log("true, tartalmazza mar");
-        confirm("This is already reserved.");
+        isReserved1 = true;
       } else {
-        console.log("false, nem tartalmazza");
-        this.reservationService.createRes(this.resForm.value);
-        this.router.navigate(['list-reservations']);
-        
+        isReserved1 = false;
       }
     });
 
-  }
+    this.reservationService.isTimestampReserved(timestamp).pipe(take(1)).subscribe((reserved) => {
+      if (reserved && (isReserved1 === true)) {
+        console.log('true, tartalmazza mar');
+        confirm('This is already reserved.');
+        
+      } else {
+        console.log('false, nem tartalmazza');
+        this.reservationService.createRes(this.resForm.value);
+        this.router.navigate(['list-reservations']);
+      }
+    });
  */
+
+  }
+}
+
 

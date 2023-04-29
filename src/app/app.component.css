@@ -41,5 +41,8 @@ mat-sidenav{
 mat-sidenav-content {
      background: #FF689F;
      height: 100%;
-  }
-  
+}
+
+mat-sidenav-container{
+    height: 100%;
+}

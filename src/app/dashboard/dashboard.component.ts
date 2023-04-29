@@ -38,7 +38,6 @@ export class DashboardComponent implements OnInit{
     
   }
 
-  //"GnXt9K3HwcY1fZncBvh7DkhbLTz2"
   listRes(value: string){
     this.reservationService.getResByService(value).subscribe(res =>{
       this.reservation = res.map(e => {

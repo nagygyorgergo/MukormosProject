@@ -1,5 +1,5 @@
 <form [formGroup]="editForm" (ngSubmit)="onSubmit(newDate, newTimestamp)" novalidate>
-    <h1>Edit student</h1>
+    <h1>Edit reservation</h1>
     <!-- <mat-form-field>
         <mat-label for="worker_name">Patient's name:</mat-label>
         <input matInput type="text" formControlName="worker_name" required/>
@@ -20,7 +20,7 @@
 
     <mat-form-field>
         <mat-label>Timestamp:</mat-label>
-        <mat-select [(ngModel)]="newTimestamp" matSelect type="text" formControlName="timestamp" placeholder="" required>
+        <mat-select [(ngModel)]="newTimestamp" matSelect type="text" formControlName="timestamp" required>
             <mat-option value="10:00">10:00</mat-option>
             <mat-option value="11:00">11:00</mat-option>
             <mat-option value="15:00">15:00</mat-option>
@@ -43,7 +43,9 @@
     </mat-form-field>
 
     <div class="mb-3">
-        <button mat-raised-button type="submit" class="btn btn-primary" >Update</button>
+        
+        <button mat-raised-button type="submit" class="btn btn-primary"
+        [disabled]="!editForm.valid" >Update</button>
         &nbsp; &nbsp; &nbsp; &nbsp;
         <button mat-raised-button type="reset" class="btn btn-danger">Reset</button>
     </div>

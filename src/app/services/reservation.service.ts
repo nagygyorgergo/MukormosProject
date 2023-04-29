@@ -20,7 +20,7 @@ export class ReservationService {
   getResList(){
     return this.angularFirestore
     .collection('reservations-collection', ref => ref
-    .orderBy('date', 'desc')) 
+    .orderBy('date', 'desc').orderBy('timestamp', 'desc')) 
     .snapshotChanges();
   }
 
@@ -34,6 +34,26 @@ export class ReservationService {
       );
   }
 
+  /* isDateReserved(date: number): Observable<boolean> {
+    return this.angularFirestore
+      .collection('reservations-collection', ref => 
+        ref.where('date', '==', date))
+      .valueChanges()
+      .pipe(
+        map(reservations => reservations.length > 0)
+      );
+  }
+
+  isTimestampReserved(timestamp: string): Observable<boolean> {
+    return this.angularFirestore
+      .collection('reservations-collection', ref => 
+        ref.where('timestamp', '==', timestamp))
+      .valueChanges()
+      .pipe(
+        map(reservations => reservations.length > 0)
+      );
+  } */
+  
   createRes(reservation: Reservation){
     return new Promise<any>((resolve, reject) => {
       this.angularFirestore
@@ -54,9 +74,7 @@ export class ReservationService {
     return this.angularFirestore
       .collection("reservations-collection")
       .doc(id)
-      .update({
-        worker_name: reservation.worker_name,
-         
+      .update({         
         service: reservation.service,
         timestamp: reservation.timestamp,
         date: reservation.date
@@ -70,7 +88,7 @@ export class ReservationService {
     //.snapshotChanges();
 
     return this.angularFirestore
-    .collection('reservations-collection', ref =>ref.where('service', '==', serviceType).orderBy('timestamp', 'desc'))
+    .collection('reservations-collection', ref =>ref.where('service', '==', serviceType).orderBy('date', 'desc').orderBy('timestamp', 'desc'))
     .snapshotChanges();
   }
 }
